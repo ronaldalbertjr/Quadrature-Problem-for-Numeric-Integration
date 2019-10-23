@@ -61,7 +61,7 @@ double B(double x)
 //Calcular o valor da função da letra C no ponto x
 double C(double x)
 {
-	return sqrt(1 - pow(x, 4));
+	return sqrt(1 + pow(x, 4));
 }
 
 //Calcular o valor da função da letra C no ponto x
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
 	//Aplicando a integração para cada uma das funções
 	printf("O resultado da integração na função A foi %f\n", CalcularAreaNoIntervalo(a, b, A));
-	printf("O resultado da integração na função B foi %f\n", CalcularAreaNoIntervalo(a, b, B));
+	printf("O resultado da integração na função B foi %f\n", CalcularAreaNoIntervalo(-1, 1, B));
 	printf("O resultado da integração na função C foi %f\n", CalcularAreaNoIntervalo(a, b, C));
 	printf("O resultado da integração na função D foi %f\n", CalcularAreaNoIntervalo(a, b, D));
 	printf("O resultado da integração na função E foi %f\n", CalcularAreaNoIntervalo(a, b, E));
