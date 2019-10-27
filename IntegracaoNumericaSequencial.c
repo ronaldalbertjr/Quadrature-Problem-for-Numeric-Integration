@@ -99,15 +99,24 @@ int main(int argc, char *argv[])
 	double a = atof(argv[1]);
 	double b = atof(argv[2]);
 	ERRO = atof(argv[3]);
+	double ini, fim;
 
+	GET_TIME(ini);
 	//Aplicando a integração para cada uma das funções
 	printf("O resultado da integração na função A foi %f\n", CalcularAreaNoIntervalo(a, b, A));
-	printf("O resultado da integração na função B foi %f\n", CalcularAreaNoIntervalo(-1, 1, B));
+	if((a < -1 || a > 1) || (b < - 1 || b > 1))
+	{
+		printf("O intervalo de entrada está fora dos limites onde a função B é definida\n");
+	}
+	else
+		printf("O resultado da integração na função B foi %f\n", CalcularAreaNoIntervalo(a, b, B));
 	printf("O resultado da integração na função C foi %f\n", CalcularAreaNoIntervalo(a, b, C));
 	printf("O resultado da integração na função D foi %f\n", CalcularAreaNoIntervalo(a, b, D));
 	printf("O resultado da integração na função E foi %f\n", CalcularAreaNoIntervalo(a, b, E));
 	printf("O resultado da integração na função F foi %f\n", CalcularAreaNoIntervalo(a, b, F));
 	printf("O resultado da integração na função G foi %f\n", CalcularAreaNoIntervalo(a, b, G));
+	GET_TIME(fim);
 
+	printf("Tempo de execução = %lf\n", fim-ini);
 	return 0;
 }
