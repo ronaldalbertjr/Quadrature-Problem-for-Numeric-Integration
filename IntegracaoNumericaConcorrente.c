@@ -166,7 +166,11 @@ void *CalcularAreaNoIntervaloFA(void * arg)
 {
 	Dominio *dom;
 	double erro;
-	while(particoesRestantes > 0){
+  int auxPart;
+  pthread_mutex_lock(&mutexParticoes);
+  auxPart = particoesRestantes;
+  pthread_mutex_unlock(&mutexParticoes);
+	while(auxPart > 0){
 		pthread_mutex_lock(&mutexPilha); // Lockando a variável da pilha para pegar o domínio no topo da pilha
 		dom = retirar(pilhaDeIntegrais); // dom é igual ao domi(dom->a + dom->b)/2nio no topo da pilha
 
@@ -190,7 +194,7 @@ void *CalcularAreaNoIntervaloFA(void * arg)
 			pthread_mutex_unlock(&mutexArea);// deslockando a variável areaTotal
 
 			pthread_mutex_lock(&mutexParticoes); // lockando a variável partições
-			particoesRestantes--; // decrementando o numero de particoes
+			auxPart = particoesRestantes--; // decrementando o numero de particoes
 			pthread_mutex_unlock(&mutexParticoes); // deslockando a variável partições
 		}
 		else // Caso o erro não tenha sido atendido
@@ -204,7 +208,7 @@ void *CalcularAreaNoIntervaloFA(void * arg)
         pthread_mutex_unlock(&mutexPilha); // Deslockando a variavel da pilha uma vez que os dominios já foram inseridos
 
         pthread_mutex_lock(&mutexParticoes); // Lockando a variavel particoesRestantes para incrementa-la
-        particoesRestantes++; // Incrementando particoesRestantes
+        auxPart = particoesRestantes++; // Incrementando particoesRestantes
         pthread_mutex_unlock(&mutexParticoes); // Deslockando a variavel particoesRestantes uma vez que ela ja foi incrementada
 
         pthread_cond_broadcast(&condPilha);
@@ -233,6 +237,7 @@ int main(int argc, char *argv[])
 
 	tid_sistema = (pthread_t *)malloc(sizeof(pthread_t) * n_threads); // Alocando o espaço para a variável de armazenamento das threads
 
+
 	GET_TIME(ini);// Pegando o tempo inicial
 	//Gerando as threads
 	for(int i = 0; i < n_threads; i++)
@@ -252,5 +257,5 @@ int main(int argc, char *argv[])
 
 	pthread_exit(NULL);
 	destruir(pilhaDeIntegrais);
-	return 0;
+	exit(0);
 }
