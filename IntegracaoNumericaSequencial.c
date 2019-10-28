@@ -1,9 +1,9 @@
 /* Disciplina: Computacao Concorrente 
    Prof.: Silvana Rossetto
-   Aluno: Ronald Albert
-   DRE: 118021192
+   Aluno: Ronald Albert e Luis Fernando Garcia Jales
+   DRE:     118021192            118021281
 
-   Trabalho 1 Implementação Concorrente
+   Trabalho 1 Implementação Sequencial
 */
 
 
