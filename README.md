@@ -185,3 +185,46 @@ Tempo de execução = 1.465193
       O ganho de desempenho foi de 1.01569622568
       
 *Na entrada 2 temos um exemplo onde houve ganho de desempenho com a implementação concorrente*
+
+- - - - 
+
+* Função E: f(x) =cos(e^−x)
+```
+double E(double x)
+{
+	return cos(pow(M_E, -x));
+}
+
+```
+### Resultados Implementação Sequencial:
+  * Entrada: a = -50 b = 50 erro = 0.00001
+   ```
+   O resultado da integração na função E foi 49.734681
+Tempo de execução = 1.920108
+   ```
+  * Entrada: a = -154 b = 15 erro = 0.00001
+  ```
+ O resultado da integração na função E foi 14.428500
+Tempo de execução = 8.765736
+
+   ```
+  ### Resultados Implementação Concorrente
+  * Entrada: a = -50 b = 50 erro = 0.00001 n_threads = 4
+   ```
+  Area Total = 49.701311
+  Tempo de execução = 0.378458
+
+   ```
+  * Entrada: a = -154 b = 15 erro = 0.00001 n_threads = 4
+  ```
+Area Total = 14.435733
+Tempo de execução = 13.175869
+   ```
+   ### Ganho de desempenho
+   * Entrada 1:
+      O ganho de desempenho foi de 5.07350353276
+   * Entrada 2:
+      O ganho de desempenho foi de 0.66528712451
+      
+*Na entrada 1 temos um exemplo onde houve ganho de desempenho com a implementação concorrente*
+
