@@ -52,7 +52,6 @@ double A(double x)
   ```
   Area Total = 3.50000
   Tempo de execução = 0.005316
-  
    ```
    *no caso do exemplo A, é interessante observar que os tempos de execução na implementação concorrente ficaram maiores do que na implementação sequencial. Isso acontece pois o tempo de criação das threads superar o tempo da própria execução do algoritmo.*
    ### Ganho de desempenho
@@ -62,7 +61,9 @@ double A(double x)
       O ganho de desempenho foi de 0.0265237020
       
 *Como o ganho de desempenho ficou menor que 1 em ambos os casos, não houve ganho de desempenho em nenhum dos casos*
-    
+ 
+ - - - - 
+ 
 * Função B: f(x) =√1−x^2
 ```
 double B(double x)
@@ -87,13 +88,11 @@ double B(double x)
    ```
    Area Total = 1.570865
   Tempo de execução = 0.000903
-
    ```
   * Entrada: a = -0.5 b = 0.03 erro = 0.000001 n_threas = 10
   ```
 Area Total = 0.508308
 Tempo de execução = 0.000601
-  
    ```
    ### Ganho de desempenho
    * Entrada 1:
@@ -102,6 +101,8 @@ Tempo de execução = 0.000601
       O ganho de desempenho foi de 0.12811980033
       
 *Como o ganho de desempenho ficou menor que 1 em ambos os casos, não houve ganho de desempenho em nenhum dos casos*
+- - - - 
+
 * Função C: f(x) =√1 +x4
 ```
 double C(double x)
@@ -120,7 +121,6 @@ double C(double x)
   ```
   O resultado da integração na função C foi 333000000.004445
   Tempo de execução = 0.269024
-
    ```
   ### Resultados Implementação Concorrente
   * Entrada: a = -5 b = 10 erro = 0.000001 n_threads = 15
@@ -132,7 +132,6 @@ Tempo de execução = 0.013335
   ```
 Area Total = 333000000.004297
 Tempo de execução = 0.800274
-  
    ```
    ### Ganho de desempenho
    * Entrada 1:
