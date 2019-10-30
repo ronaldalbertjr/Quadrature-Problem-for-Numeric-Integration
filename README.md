@@ -228,3 +228,82 @@ Tempo de execução = 13.175869
       
 *Na entrada 1 temos um exemplo onde houve ganho de desempenho com a implementação concorrente*
 
+- - - - 
+
+* Função F: f(x) =cos(e^−x)
+```
+double F(double x)
+{
+	return cos(pow(M_E, -x)) * x;
+}
+
+```
+### Resultados Implementação Sequencial:
+  * Entrada: a = -4 b = 4 erro = 0.00000000000000001
+   ```
+   O resultado da integração na função F foi 8.312665
+Tempo de execução = 3.117241
+   ```
+  * Entrada: a = -10 b = 10 erro = 0.000000000001
+  ```
+ O resultado da integração na função F foi 50.244957
+Tempo de execução = 5.058464
+
+   ```
+  ### Resultados Implementação Concorrente
+  * Entrada: a = -4 b = 4 erro = 0.00000000000000001 n_threads = 4
+   ```
+  Area Total = 8.312665
+Tempo de execução = 7.488494
+   ```
+  * Entrada: a = -10 b = 10 erro = 0.00001 n_threads = 4
+  ```
+Area Total = 50.244957
+Tempo de execução = 11.796856
+   ```
+   ### Ganho de desempenho
+   * Entrada 1:
+      O ganho de desempenho foi de 0.41627074816
+   * Entrada 2:
+      O ganho de desempenho foi de 0.42879763896
+      
+*Como o ganho de desempenho ficou menor que 1 em ambos os casos, não houve ganho de desempenho em nenhum dos casos*
+- - - - 
+
+* Função G: f(x) =cos(e^−x)∗(0.005∗x3+ 1)
+```
+double G(double x)
+{
+	return cos(pow(M_E, -x)) * ( (0.005 * pow(x, 3)) + 1);
+}
+```
+### Resultados Implementação Sequencial:
+  * Entrada: a = 1 b = 1000 erro = 0.00000000000000001
+   ```
+  O resultado da integração na função G foi 1250000998.964305
+Tempo de execução = 45.153061
+   ```
+  * Entrada: a = -15 b = 15 erro = 0.000001
+  ```
+ O resultado da integração na função G foi 77.804631
+Tempo de execução = 2.755566
+   ```
+  ### Resultados Implementação Concorrente
+  * Entrada: a = 1 b = 1000 erro = 0.00000000000000001 n_threads = 4
+   ```
+  Area Total = 1250000998.964145
+Tempo de execução = 80.243909
+   ```
+  * Entrada: a = -15 b = 15 erro = 0.000001 n_threads = 2
+  ```
+Area Total = 77.804858
+Tempo de execução = 3.689936
+   ```
+   ### Ganho de desempenho
+   * Entrada 1:
+      O ganho de desempenho foi de 0.56269767466 
+   * Entrada 2:
+      O ganho de desempenho foi de 0.74677880592
+      
+*Como o ganho de desempenho ficou menor que 1 em ambos os casos, não houve ganho de desempenho em nenhum dos casos*
+
