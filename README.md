@@ -168,12 +168,12 @@ Tempo de execução = 1.488191
 
    ```
   ### Resultados Implementação Concorrente
-  * Entrada: a = -20 b = 40 erro = 0.000001 n_threads = 15
+  * Entrada: a = -20 b = 40 erro = 0.0000000001 n_threads = 15
    ```
   Area Total = 1.273956
 Tempo de execução = 0.644712
    ```
-  * Entrada: a = -200 b = 30 erro = 0.000000001 n_threads = 50
+  * Entrada: a = -200 b = 30 erro = 0.0000000001 n_threads = 4
   ```
 Area Total = 1.251394
 Tempo de execução = 1.465193
