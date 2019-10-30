@@ -16,6 +16,10 @@ Solução Sequencial:
 Solução Concorrente:
   A solução concorrente implementa uma pilha, que armazena os intervalos que precisam ser processados. A thread vai empilhando na pilha os intervalos até que o erro seja atendido, assim como a recursão na solução sequencial. Assim que o erro é atendido, a pilha pode ir desempilhando o valor da área nos intervalos. 
   O algoritmo possui um variável global que conta a quantidade de intervalos restantes (particoesRestantes) para serem calculadas na pilha, essa variável é incrementada caso o erro ainda não tenha sido atinjido e um intervalo é adicionado na pilha, quando o erro é atinjido essa variável é decrementada de 1 e a thread desempilhada os intervalos, uma vez que aquele intervalo já está dentro do erro proposto, a área daquele intervalo é somada na variável areaTotal, assim que todas as threads terminam o seu desempilhamento temos o valor da areaTotal final.
+  A condição de parada depende do número de partições restantes, que possui uma propriedade importante: (particoesRestantes == 0) se e somente se todos os intervalos já foram calculados.
+    Como as threads não terminam mesmo após o erro ser atendido e há a possibilidade da pilha ficar vazia sem todas as partições serem calculadas, o ideal é esperar todas as threads computar todos os intervalos e ficar em um loop dando "POP" em uma pilha vazia. Isso acontece se e somente se todos os intervalos forem computados.
+    A partir disso, a thread só entra no "while" se (0 < particoesRestantes), o que implica em (particoesRestantes == 0) faz a thread sair do "while" e dando "exit".
+Portanto, a condição de parada da thread é (particoesRestantes == 0).
   
 ## Estruturas de dados ultilizadas
 * Pilha 
@@ -103,7 +107,7 @@ Tempo de execução = 0.000601
 *Como o ganho de desempenho ficou menor que 1 em ambos os casos, não houve ganho de desempenho em nenhum dos casos*
 - - - - 
 
-* Função C: f(x) =√1 +x4
+* Função C: f(x) =√1 +x^4
 ```
 double C(double x)
 {
@@ -140,3 +144,44 @@ Tempo de execução = 0.800274
       O ganho de desempenho foi de 0.33616486353
       
 *Como o ganho de desempenho ficou menor que 1 em ambos os casos, não houve ganho de desempenho em nenhum dos casos*
+
+- - - - 
+
+* Função D: f(x) = sen(x^2)
+```
+double D(double x)
+{
+	return sin(pow(x, 2));
+}
+
+```
+### Resultados Implementação Sequencial:
+  * Entrada: a = -20 b = 40 erro = 0.0000000001
+   ```
+   O resultado da integração na função D foi 1.273956
+Tempo de execução = 0.164200
+   ```
+  * Entrada: a = -200 b = 30 erro = 0.0000000001
+  ```
+ O resultado da integração na função D foi 1.251394
+Tempo de execução = 1.488191
+
+   ```
+  ### Resultados Implementação Concorrente
+  * Entrada: a = -20 b = 40 erro = 0.000001 n_threads = 15
+   ```
+  Area Total = 1.273956
+Tempo de execução = 0.644712
+   ```
+  * Entrada: a = -200 b = 30 erro = 0.000000001 n_threads = 50
+  ```
+Area Total = 1.251394
+Tempo de execução = 1.465193
+   ```
+   ### Ganho de desempenho
+   * Entrada 1:
+      O ganho de desempenho foi de 0.25468736428
+   * Entrada 2:
+      O ganho de desempenho foi de 1.01569622568
+      
+*Na entrada 2 temos um exemplo onde houve ganho de desempenho com a implementação concorrente*
